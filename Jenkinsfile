@@ -2,7 +2,7 @@ pipeline {
   agent any
   stages {
     stage ('Git Clone') {
-        git url:'https://github.com/sai95573/project-2.git', branch: 'master'
+        git credentialsId: 'github-cred', url: 'https://github.com/sai95573/project-2.git'
         }  
     stage ('Build') {
       steps {
