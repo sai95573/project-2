@@ -11,6 +11,13 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-        }       
+        }
+        stage ('Deploy') {
+          steps {
+	    sshagent(['deployuser']) {
+	        sh "scp -o StrictHostKeyChecking=no target/sample-2.war ubuntu@65.1.2.222/var/lib/tomcat9/webapps/webapptest.war"
+	        }
+	      }
+        }    
     }
 }
